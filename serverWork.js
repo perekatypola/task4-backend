@@ -80,7 +80,6 @@ const {decodeToken} = require("./safety");
         }
     })
 
-
     app.get('/blockUser' , (req , res) => {
         if(req.header('Auth')) {
             sql.updateStatus(connection , req.header('Id') ,  req.header('Block')).then(() => {})
@@ -92,9 +91,9 @@ const {decodeToken} = require("./safety");
     })
 
     app.get('/deleteUser' , (req , res) => {
-        if(req.header('Auth')) {
-            sql.deleteUser(req.header('Id') ,connection).then(()=>{})
-            res.send("Success")
+        if(req.header('Auth')!=="") {
+            sql.deleteUser(req.header('Id') ,connection).then(()=>{res.send("Success")})
+
         }
         else {
             res.send("not authorized")
