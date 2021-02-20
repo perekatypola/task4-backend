@@ -99,6 +99,14 @@ const {decodeToken} = require("./safety");
             res.send("not authorized")
         }
     })
+    app.get('/' , (req , res) => {
+        if(req.header('Auth')!=="") {
+            res.send("Welcome")
+        }
+        else {
+            res.send("not authorized")
+        }
+    })
 
     app.listen(process.env.PORT || port, () => {
         console.log('Server running')
