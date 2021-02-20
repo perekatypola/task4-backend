@@ -52,6 +52,8 @@ exports.addUser =  async (name , password , email, connection , date) => {
     let hashedPassword =  await safe.hashPassword(password)
     connection.query('INSERT INTO user(user, password, email , reg_date , status) VALUES (?, ?, ?, ?, ?)' , [name , hashedPassword , email ,date , "unblocked"],
         (err , result) => {
+        console.log(err)
+        console.log(result)
         })
 }
 
