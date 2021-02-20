@@ -2,10 +2,10 @@ const mysql = require("mysql2")
 const safe = require('./safety')
 exports.connect = function() {
     const connection = mysql.createConnection({
-        host:"localhost",
-        user:"root",
-        database: "authTask",
-        password:"vfvfgfgf2311"
+        host:"eu-cdbr-west-03.cleardb.net",
+        user:"b3d8dcdd8634e4",
+        database: "heroku_c8268f11c019a7f",
+        password:"cb9d9a29"
     });
     connection.connect(function(err){
         if (err) {
