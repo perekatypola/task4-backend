@@ -40,9 +40,9 @@ const {decodeToken} = require("./safety");
         })
     })
     app.post('/reg',(req, res) => {
-        let date = sql.getDate()
-        sql.addUser(req.body.name , req.body.password , req.body.email , connection , date).then(() => {res.send("Added user");})
-
+                let date = sql.getDate()
+                sql.addUser(req.body.name , req.body.password , req.body.email , connection , date).then((result) =>
+                    res.send(result))
     })
 
     app.get('/updateAuthDate' , (req , res) => {

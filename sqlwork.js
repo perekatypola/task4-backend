@@ -50,9 +50,18 @@ exports.checkUser =  function(connection, name) {
 
 exports.addUser =  async (name , password , email, connection , date) => {
     let hashedPassword =  await safe.hashPassword(password)
-    connection.query('INSERT INTO user(user, password, email , reg_date , status) VALUES (?, ?, ?, ?, ?)' , [name , hashedPassword , email ,date , "unblocked"],
-        (err , result) => {
-        })
+    return new Promise((resolve , reject) => {
+        connection.query('INSERT INTO user(user, password, email , reg_date , status) VALUES (?, ?, ?, ?, ?)' , [name , hashedPassword , email ,date , "unblocked"],
+            (err , result) => {
+            if(err) {
+                reject(err)
+            }
+            else{
+                    resolve(result)
+                }
+            })
+    })
+
 }
 
 exports.getDate = () => {
