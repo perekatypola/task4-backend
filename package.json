@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start" : "node serverWork.js"
+    "start": "node serverWork.js"
   },
   "keywords": [],
   "author": "",
