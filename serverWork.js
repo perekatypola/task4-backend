@@ -13,7 +13,7 @@ const {decodeToken} = require("./safety");
     app.use(cors())
 
     app.post('/auth' , (req , res) => {
-        res.set('Access-Control-Allow-Origin', 'https://task4-frontend.herokuapp.com/')
+        res.set('Access-Control-Allow-Origin', '*')
         sql.checkUser(connection , req.body.name).then((result) => {
             result.map((name) => {
                 if(name.user === req.body.name) {
@@ -41,14 +41,14 @@ const {decodeToken} = require("./safety");
         })
     })
     app.post('/reg',(req, res) => {
-        res.set('Access-Control-Allow-Origin', 'https://task4-frontend.herokuapp.com/')
+        res.set('Access-Control-Allow-Origin', '*')
         let date = sql.getDate()
         sql.addUser(req.body.name , req.body.password , req.body.email , connection , date).then((result) =>
                     res.send(result))
     })
 
     app.get('/updateAuthDate' , (req , res) => {
-        res.set('Access-Control-Allow-Origin', 'https://task4-frontend.herokuapp.com/')
+        res.set('Access-Control-Allow-Origin', '*')
         if(req.header('Auth')) {
             let decoded = decodeToken(req.header('Auth'))
             res.set('Access-Control-Allow-Origin' , '*')
@@ -97,7 +97,7 @@ const {decodeToken} = require("./safety");
     })
 
     app.get('/deleteUser' , (req , res) => {
-        res.set('Access-Control-Allow-Origin', 'https://task4-frontend.herokuapp.com/')
+        res.set('Access-Control-Allow-Origin', '*')
         if(req.header('Auth')!=="") {
             sql.deleteUser(req.header('Id') ,connection).then(()=>{res.send("Success")})
 
@@ -107,7 +107,7 @@ const {decodeToken} = require("./safety");
         }
     })
     app.get('/' , (req , res) => {
-        res.set('Access-Control-Allow-Origin', 'https://task4-frontend.herokuapp.com/')
+        res.set('Access-Control-Allow-Origin', '*')
         if(req.header('Auth')!=="") {
             res.send("Welcome")
         }
