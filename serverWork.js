@@ -41,6 +41,7 @@ const {decodeToken} = require("./safety");
     })
     app.post('/reg',(req, res) => {
                 let date = sql.getDate()
+        res.set('Access-Control-Allow-Origin' , '*')
                 sql.addUser(req.body.name , req.body.password , req.body.email , connection , date).then((result) =>
                     res.send(result))
     })
