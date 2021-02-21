@@ -12,7 +12,7 @@ const {decodeToken} = require("./safety");
 
 app.use((req, res, next) => {
 
-    res.header("Access-Control-Allow-Origin",  '*');
+    res.header("Access-Control-Allow-Origin",  'https://task4-frontend.herokuapp.com');
 
     res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
 
