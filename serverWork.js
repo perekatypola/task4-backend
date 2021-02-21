@@ -17,7 +17,7 @@ app.use(function(req, res, next) {
     res.header("Access-Control-Expose-Headers" , 'Access-Control-Allow-Origin,Access-Control-Allow-Headers')
     next();
 });
-    // app.use(cors())
+    app.use(cors())
 
     app.post('/auth' , (req , res) => {
         sql.checkUser(connection , req.body.name).then((result) => {
