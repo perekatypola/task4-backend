@@ -10,7 +10,7 @@ const {decodeToken} = require("./safety");
     const connection = sql.connect()
     app.use(bodyParser.json());
 app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", 'https://task4-frontend.herokuapp.com/');
+    res.header("Access-Control-Allow-Origin", '*');
     res.header("Access-Control-Allow-Credentials", true);
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
     res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json,Auth,Block,Delete');
@@ -25,8 +25,8 @@ app.use(function(req, res, next) {
                 if(name.user === req.body.name) {
                     console.log(name.user)
                     safe.validatePassword(req.body.password, connection, req.body.name).then((a) => {
-                        console.log(a)
                         if (a) {
+                            console.log(a)
                             sql.checkStatus(connection , req.body.name).then(async (result) => {
                                 if(result === "unblocked") {
                                     let hashedPassword =  await safe.hashPassword(req.body.password)
