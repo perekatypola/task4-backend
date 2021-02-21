@@ -10,14 +10,14 @@ const {decodeToken} = require("./safety");
     const connection = sql.connect()
     app.use(bodyParser.json());
 app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", 'https://task4-frontend.herokuapp.com');
+    res.header("Access-Control-Allow-Origin", '*');
     res.header("Access-Control-Allow-Credentials", true);
     res.header('Access-Control-Allow-Methods', 'GET,POST');
     res.header("Access-Control-Allow-Headers", 'X-Requested-With,Access-Control-Allow-Origin,Content-Type,Accept,content-type,application/json,Auth,Block,Delete,Id');
     res.header("Access-Control-Expose-Headers" , 'Access-Control-Allow-Origin,Access-Control-Allow-Headers')
     next();
 });
-    app.use(cors())
+    // app.use(cors())
 
     app.post('/auth' , (req , res) => {
         sql.checkUser(connection , req.body.name).then((result) => {
