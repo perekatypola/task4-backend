@@ -55,8 +55,7 @@ const {decodeToken} = require("./safety");
     app.get('/updateAuthDate' , (req , res) => {
         if(req.header('Auth')) {
             let decoded = decodeToken(req.header('Auth'))
-            sql.updateAuthDate(connection , getDate() , decoded).then((result) => {})
-            res.send("Success")
+            sql.updateAuthDate(connection , getDate() , decoded).then((result) => {res.send("Success")})
         }
         else {
             res.send("not authorized")
