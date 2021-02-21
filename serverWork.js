@@ -14,10 +14,10 @@ app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Credentials", true);
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
     res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
-    res.header('Access-Control-Expose-Headers' , 'Access-Control-Allow-Origin')
+    res.header('Access-Control-Expose-Headers' , '*')
     next();
 });
-    app.use(cors())
+    // app.use(cors())
 
     app.post('/auth' , (req , res) => {
         sql.checkUser(connection , req.body.name).then((result) => {
