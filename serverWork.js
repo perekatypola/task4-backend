@@ -40,15 +40,16 @@ const {decodeToken} = require("./safety");
         })
     })
     app.post('/reg',(req, res) => {
-                let date = sql.getDate()
+        let date = sql.getDate()
         res.set('Access-Control-Allow-Origin' , '*')
-                sql.addUser(req.body.name , req.body.password , req.body.email , connection , date).then((result) =>
+        sql.addUser(req.body.name , req.body.password , req.body.email , connection , date).then((result) =>
                     res.send(result))
     })
 
     app.get('/updateAuthDate' , (req , res) => {
         if(req.header('Auth')) {
             let decoded = decodeToken(req.header('Auth'))
+            res.set('Access-Control-Allow-Origin' , '*')
             sql.updateAuthDate(connection , getDate() , decoded).then((result) => {res.send("Success")})
         }
         else {
