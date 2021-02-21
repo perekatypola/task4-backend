@@ -2,7 +2,6 @@ const sql =  require("./sqlwork")
 const cors = require('cors');
 const safe = require('./safety')
 const bodyParser = require('body-parser')
-// const server  =  http.createServer((req ,res) => {
 const express = require('express')
 const {getDate} = require("./sqlwork");
 const {decodeToken} = require("./safety");
@@ -10,6 +9,13 @@ const {decodeToken} = require("./safety");
     const port = 3005
     const connection = sql.connect()
     app.use(bodyParser.json());
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", '*');
+    res.header("Access-Control-Allow-Credentials", true);
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
+    next();
+});
     app.use(cors())
 
     app.post('/auth' , (req , res) => {
