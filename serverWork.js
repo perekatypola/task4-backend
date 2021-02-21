@@ -22,7 +22,7 @@ app.use((req, res, next) => {
     next();
 });
 
-    app.use(cors())
+    // app.use(cors())
 
     app.post('/auth' , (req , res) => {
         sql.checkUser(connection , req.body.name).then((result) => {
